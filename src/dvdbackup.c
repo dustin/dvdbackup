@@ -30,6 +30,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <limits.h>
+#include <sysexits.h>
 #include <dvdread/dvd_reader.h>
 #include <dvdread/ifo_read.h>
 #include <dvdread/ifo_print.h>
@@ -228,7 +229,7 @@ void usage(){
 		"\t-a is option to the -F switch and "
 			"has no effect on other options\n"
 		"\t-s and -e should preferably be used together with -t\n\n");
-	exit(EXIT_FAILURE);
+	exit(EX_USAGE);
 }
 
 int CheckSizeArray(const int size_array[], int reference, int target) {
