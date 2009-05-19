@@ -623,7 +623,7 @@ titles_info_t *DVDGetInfo(dvd_reader_t *_dvd) {
 
     /* Check if the second biggest one actually can be a feature title
        Here we will take do biggest/second and if that is bigger than
-       one it's not a feauture title.
+       one it's not a feature title.
 
        Now this is simply not enough since we have to check that the
        diff between the two of them is small enough to consider the
@@ -839,7 +839,7 @@ titles_info_t *DVDGetInfo(dvd_reader_t *_dvd) {
        help you understand the code*/
 
     /* Okay lets see if the biggest one has most chapters, it also has
-       more subtitles and audio tracks than the second one and it's
+       more subtitles and audio tracks than the second one and its
        title one.  Done it must be the main film
 
        Hmm the biggest one doesn't have the most chapters?
@@ -861,7 +861,7 @@ titles_info_t *DVDGetInfo(dvd_reader_t *_dvd) {
        small modulo - like wise a normal modulo should give us a high
        modulo
 
-       If we get more than one it's of cource a fake however if we get
+       If we get more than one its of cource a fake however if we get
        just one we still need to check if we subtract the smaller one
        from the bigger one we should end up with a small number -
        hence we need to multiply it more than 4 times to get it bigger
@@ -2062,9 +2062,9 @@ int DVDDisplayInfo(dvd_reader_t *_dvd, char *dvd) {
                 }
             }
             fprintf(stdout, "\tThe main feature has a maximum of %d "
-                    "chapter(s) in on of it's titles\n", chapters);
+                    "chapter(s) in on of its titles\n", chapters);
             fprintf(stdout, "\tThe main feature has a maximum of %d "
-                    "audio channel(s) in on of it's titles\n", channels);
+                    "audio channel(s) in on of its titles\n", channels);
             break;
         }
 
