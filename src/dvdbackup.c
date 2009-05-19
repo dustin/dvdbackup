@@ -34,6 +34,7 @@
 #include <dvdread/dvd_reader.h>
 #include <dvdread/ifo_read.h>
 #include <dvdread/ifo_print.h>
+#include <dvdread/dvd_udf.h>
 
 
 #define MAXNAME 256
@@ -1665,7 +1666,7 @@ title_set_info_t *DVDGetFileSet(dvd_reader_t * _dvd) {
 
 	/* DVD Video files */
 	char	filename[MAXNAME];
-	int	size;
+	uint32_t	size;
 
 	/*DVD ifo handler*/
 	ifo_handle_t * 	vmg_ifo=NULL;
