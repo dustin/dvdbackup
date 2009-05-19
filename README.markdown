@@ -11,7 +11,7 @@ dvdbackup is a tool to back up your DVDs in whole or part.
 ## Gerneral backup information:
 
 If your backup directory is `/my/dvd/backup/dir/` specified with the
-`-o` flag. Then dvdbackup will create a DVD-Video structure under
+`-o` flag, then dvdbackup will create a DVD-Video structure under
 `/my/dvd/backup/dir/TITLE\_NAME/VIDEO\_TS`.
 
 Since the title is "uniq" you can use the same dir for all your DVD
@@ -41,13 +41,13 @@ a DVD-/+R(W) with help of mkisofs version 1.11a27 or later
     dvdbackup -F -i/dev/dvd -o/my/dvd/backup/dir/
 
 This action creates a valid DVD-Video structure of the feature title
-set
+set.
 
 dvdbackup defaults to get the 16:9 version of the main feature if a
 4:3 is also present on the DVD.  To get the 4:3 version use `-a 0`.
 
-dvdbackup makes it best to make a inteligent guess what is the main
-feature of the DVD - in case it fails please send a bug report.
+dvdbackup makes it best to intelligently guess the main feature of the
+DVD - in case it fails, please send a bug report.
 
 ## To backup a title set
 
@@ -73,9 +73,9 @@ will skip sectors that aren't a part of the title.
     dvdbackup -t 1 -s 20 -e 25 -i/dev/dvd -o/my/dvd/backup/dir
 
 This action will backup chapter 20 to 25 in title 1, as with the
-backup of a title there can be sector gaps between one chapter (cell)
-and on other.dvdbackup will backup all sectors that belongs to the
-title 1 chapter 20 to 25 but will skip sectors that aren't a part of
+backup of a title, there can be sector gaps between one chapter (cell)
+and on other.  dvdbackup will backup all sectors that belongs to the
+title 1 chapter 20 to 25, but will skip sectors that aren't a part of
 the title 1 chapter 20 to 25.
 
 To backup a single chapter e.g. chapter 20 do `-s 20 -e 20`
@@ -85,10 +85,10 @@ To backup from chapter 20 to the end chapter use only `-s 20`
 To backup to chapter 20 from the first chapter use only `-e 20`
 
 You can skip the `-t` switch and let the program guess the title
-although it's not recomened.
+although it's not recommended.
 
 If you specify a chapter that his higher than the last chapter of the
-title dvdbackup will turncate to the highest chapter of the title.
+title dvdbackup will truncate to the highest chapter of the title.
 
 ## Return values:
 * 0 on success
@@ -99,12 +99,12 @@ title dvdbackup will turncate to the highest chapter of the title.
 # Todo - i.e. what's on the agenda.
 
 Make the main feature guessing algoritm better. Not that it doesn't do
-it's job, but it's implementation it's that great. I would also like
+its job, but its implementation isn't that great. I would also like
 to preserve more information about the main feature since that would
-let me preform better implementations in other functions that depends
-on the titles\_info\_t and title\_set\_info\_t strcutures.
+let me perform better implementations in other functions that depend
+on the titles\_info\_t and title\_set\_info\_t structures.
 
-Make it possible to extract cells in a title not just chapters (very
+Make it possible to extract cells in a title, not just chapters (very
 easy so it will definitly be in the next version).
 
 Make a split mirror (`-S`) option that divides a DVD-9 to two valid
