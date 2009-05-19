@@ -221,10 +221,10 @@ void usage(){
 	fprintf(stderr,"\t-a 0\t\tto get aspect ratio 4:3 instead of 16:9 if both are present\n");
 	fprintf(stderr,"\t-h\t\tprint a brief usage message\n");
 	fprintf(stderr,"\t-?\t\tprint a brief usage message\n\n");
-	fprintf(stderr,"\t-i is manditory\n");
-	fprintf(stderr,"\t-o is manditory except if you use -I\n");
+	fprintf(stderr,"\t-i is mandatory\n");
+	fprintf(stderr,"\t-o is mandatory except if you use -I\n");
 	fprintf(stderr,"\t-a is option to the -F switch and has no effect on other options\n");
-	fprintf(stderr,"\t-s and -e should prefereibly be used together with -t \n\n");
+	fprintf(stderr,"\t-s and -e should preferably be used together with -t\n\n");
 	exit(1);
 }
 
