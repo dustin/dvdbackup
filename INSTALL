@@ -1,0 +1,47 @@
+How to backup a DVD-Video under Linux with help of dvdbackup
+
+
+Install:
+--------
+
+Download dvdbackup version 0.1 - you will also need libdvdread version 0.9.3 or later.
+
+Compile dvdbackup.c in the src dir like this gcc -o dvdbackup \
+-I/my/prefix/to/libdvdread/include -L/my/prefix/to/libdvdread/lib \
+-ldvdread dvdbackup.c
+
+NOTE: The "\" indicates that it's one line - i.e. remove the "\" from the command
+line
+
+
+
+Prerequisites:
+--------------
+
+Prerequisite that you have a DVD-Video that you can backup - NOTE 
+it's not legal to backup a DVD-Video that you don't own! 
+
+
+How to backup:
+--------------
+
+If you just want to backup everything (all video dvdbackup doesn't backup 
+any computer files) use.
+
+dvdbackup -M -i/dev/dvd -o/my/dvd/backup/dir/
+
+dvdbackup will create a DVD-Video structure under /my/dvd/backup/dir/TITLE_NAME/
+Since the title is "uniq" you can use the same dir for all your DVD backups.
+If the DVD  happens to have a generic title dvdbackup will exit with a return 
+value of 2. And you will need to specify a title name with the -n switch. 
+
+If you are backing up a DVD-5 (single layer DVD) you can actually burn the 
+DVD-Video structure to a DVD-/+R(W) disk. Please see dvdburn for instructions.
+
+You can also backup a title set with the -T switch, gather info of the DVD with
+the -I switch, etc. dvdbackup has many features please see the README file
+for more information.
+
+
+Happy backup!
+
