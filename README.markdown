@@ -12,7 +12,7 @@ dvdbackup is a tool to back up your DVDs in whole or part.
 
 If your backup directory is `/my/dvd/backup/dir/` specified with the
 `-o` flag, then dvdbackup will create a DVD-Video structure under
-`/my/dvd/backup/dir/TITLE\_NAME/VIDEO\_TS`.
+`/my/dvd/backup/dir/TITLE_NAME/VIDEO_TS`.
 
 Since the title is "uniq" you can use the same dir for all your DVD
 backups. If it happens to have a generic title dvdbackup will exit
