@@ -210,6 +210,8 @@ void usage(){
 	fprintf(stderr,"\t-v X\t\twhere X is the amount of verbosity\n");
 	fprintf(stderr,"\t-I\t\tfor information about the DVD\n");
 	fprintf(stderr,"\t-o directory\twhere directory is your backup target\n");
+    fprintf(stderr,"\t-n dvd_title\tDVD title "
+            "(in case it is not automatically determined)\n");
 	fprintf(stderr,"\t-M\t\tbackup the whole DVD\n");
 	fprintf(stderr,"\t-F\t\tbackup the main feature of the DVD\n");
 	fprintf(stderr,"\t-T X\t\tbackup title set X\n");
