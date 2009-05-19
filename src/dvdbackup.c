@@ -204,6 +204,7 @@ void bsort_max_to_min(int sector[], int title[], int size);
 
 */
 
+void usage() __attribute__ ((noreturn));
 
 void usage(){
 	fprintf(stderr,
@@ -2379,12 +2380,10 @@ int main(int argc, char *argv[]){
 
 	if (dvd == NULL) {
 		usage();
-		exit(EXIT_FAILURE);
 	}
 
 	if (targetdir == NULL && do_info == 0) {
 		usage();
-		exit(EXIT_FAILURE);
 	}
 
 	if(verbose_temp == NULL) {
@@ -2402,14 +2401,12 @@ int main(int argc, char *argv[]){
 
 	if((aspect != 0) && (aspect != 3) && (do_info == 0)){
 		usage();
-		exit(EXIT_FAILURE);
 	}
 
 	if ( titles_temp != NULL) {
 		titles = atoi(titles_temp);
 		if ( titles < 1 ) {
 			usage();
-			exit(EXIT_FAILURE);
 		}
 	}
 
@@ -2417,7 +2414,6 @@ int main(int argc, char *argv[]){
 		start_chapter = atoi(start_chapter_temp);
 		if ( start_chapter < 1 || start_chapter > 99 ) {
 			usage();
-			exit(EXIT_FAILURE);
 		}
 	}
 
@@ -2425,7 +2421,6 @@ int main(int argc, char *argv[]){
 		end_chapter = atoi(end_chapter_temp);
 		if ( end_chapter < 1 || end_chapter > 99 ) {
 			usage();
-			exit(EXIT_FAILURE);
 		}
 	}
 
@@ -2437,7 +2432,6 @@ int main(int argc, char *argv[]){
 		}
 		if ( end_chapter < start_chapter ) {
 			usage();
-			exit(EXIT_FAILURE);
 		}
 	}
 
@@ -2454,17 +2448,14 @@ int main(int argc, char *argv[]){
 		title_set = atoi(title_set_temp);
 		if ( title_set > 99 || title_set < 0 ) {
 			usage();
-			exit(EXIT_FAILURE);
 		}
 		do_title_set = 1;
 	}
 
 	if (do_info + do_titles + do_chapter + do_feature + do_title_set  + do_mirror > 1 ) {
 		usage();
-		exit(EXIT_FAILURE);
 	} else if ( do_info + do_titles + do_chapter + do_feature + do_title_set  + do_mirror == 0) {
 		usage();
-		exit(EXIT_FAILURE);
 	}
 #ifdef DEBUG
 	fprintf(stderr,"After args\n");
