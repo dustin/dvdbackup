@@ -38,6 +38,10 @@
 
 #define MAXNAME 256
 
+/* Buffer size for reading DVD stuff */
+#define READ_BUF_SIZE (1024*1024)
+#define READ_BUF_SIZE_IN_BLOCKS (READ_BUF_SIZE / DVD_VIDEO_LB_LEN)
+
 /* Flag for verbose mode */
 int verbose;
 int aspect;
@@ -194,8 +198,7 @@ int DVDWriteCells(dvd_reader_t *dvd, int cell_start_sector[],
     int leftover;
 
     /* Buffer size in DVD sectors */
-    /* Currently set to 1MB */
-    int buff = 512;
+    int buff = READ_BUF_SIZE_IN_BLOCKS;
     int tsize;
 
     /* Offsets */
@@ -901,8 +904,7 @@ int DVDCopyTileVobX(dvd_reader_t *dvd, title_set_info_t *title_set_info,
     int left;
 
     /* Buffer size in DVD sectors */
-    /* Currently set to 1MB */
-    int buff   = 512;
+    int buff   = READ_BUF_SIZE_IN_BLOCKS;
     int offset = 0;
     int tsize;
 
@@ -1050,8 +1052,7 @@ int DVDCopyMenu(dvd_reader_t *dvd, title_set_info_t *title_set_info,
     int left;
 
     /* Buffer size in DVD sectors */
-    /* Currently set to 1MB */
-    int buff   = 512;
+    int buff   = READ_BUF_SIZE_IN_BLOCKS;
     int offset = 0;
 
     /* DVD handler */
