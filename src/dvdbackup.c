@@ -39,7 +39,7 @@
 #define MAXNAME 256
 
 /* Buffer size for reading DVD stuff */
-#define READ_BUF_SIZE (1024*1024)
+#define READ_BUF_SIZE (1024 * 1024 * 4)
 #define READ_BUF_SIZE_IN_BLOCKS (READ_BUF_SIZE / DVD_VIDEO_LB_LEN)
 
 /* Flag for verbose mode */
