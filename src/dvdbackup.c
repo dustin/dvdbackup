@@ -228,7 +228,7 @@ void usage(){
 		"\t-a is option to the -F switch and "
 			"has no effect on other options\n"
 		"\t-s and -e should preferably be used together with -t\n\n");
-	exit(1);
+	exit(EXIT_FAILURE);
 }
 
 int CheckSizeArray(const int size_array[], int reference, int target) {
@@ -2378,12 +2378,12 @@ int main(int argc, char *argv[]){
 
 	if (dvd == NULL) {
 		usage();
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 
 	if (targetdir == NULL && do_info == 0) {
 		usage();
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 
 	if(verbose_temp == NULL) {
@@ -2401,14 +2401,14 @@ int main(int argc, char *argv[]){
 
 	if((aspect != 0) && (aspect != 3) && (do_info == 0)){
 		usage();
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 
 	if ( titles_temp != NULL) {
 		titles = atoi(titles_temp);
 		if ( titles < 1 ) {
 			usage();
-			exit(1);
+			exit(EXIT_FAILURE);
 		}
 	}
 
@@ -2416,7 +2416,7 @@ int main(int argc, char *argv[]){
 		start_chapter = atoi(start_chapter_temp);
 		if ( start_chapter < 1 || start_chapter > 99 ) {
 			usage();
-			exit(1);
+			exit(EXIT_FAILURE);
 		}
 	}
 
@@ -2424,7 +2424,7 @@ int main(int argc, char *argv[]){
 		end_chapter = atoi(end_chapter_temp);
 		if ( end_chapter < 1 || end_chapter > 99 ) {
 			usage();
-			exit(1);
+			exit(EXIT_FAILURE);
 		}
 	}
 
@@ -2436,7 +2436,7 @@ int main(int argc, char *argv[]){
 		}
 		if ( end_chapter < start_chapter ) {
 			usage();
-			exit(1);
+			exit(EXIT_FAILURE);
 		}
 	}
 
@@ -2453,17 +2453,17 @@ int main(int argc, char *argv[]){
 		title_set = atoi(title_set_temp);
 		if ( title_set > 99 || title_set < 0 ) {
 			usage();
-			exit(1);
+			exit(EXIT_FAILURE);
 		}
 		do_title_set = 1;
 	}
 
 	if (do_info + do_titles + do_chapter + do_feature + do_title_set  + do_mirror > 1 ) {
 		usage();
-		exit(1);
+		exit(EXIT_FAILURE);
 	} else if ( do_info + do_titles + do_chapter + do_feature + do_title_set  + do_mirror == 0) {
 		usage();
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 #ifdef DEBUG
 	fprintf(stderr,"After args\n");
@@ -2477,7 +2477,7 @@ int main(int argc, char *argv[]){
 	if (do_info) {
 		DVDDisplayInfo(_dvd, dvd);
 		DVDClose(_dvd);
-		exit(0);
+		exit(EXIT_SUCCESS);
 	}
 
 
@@ -2485,7 +2485,7 @@ int main(int argc, char *argv[]){
 		if (DVDGetTitleName(dvd,title_name) != 0) {
 			fprintf(stderr,"You must provide a title name when you read your DVD-Video structure direct from the HD\n");
 			DVDClose(_dvd);
-			exit(1);
+			exit(EXIT_FAILURE);
 		}
 		if (strstr(title_name, "DVD_VIDEO") != NULL) {
 			fprintf(stderr,"The DVD-Video title on the disk is DVD_VIDEO which is to generic please provide a title with the -n switch\n");
@@ -2560,9 +2560,9 @@ int main(int argc, char *argv[]){
 	if(do_mirror) {
 		if ( DVDMirror(_dvd, targetdir, title_name)  != 0 ) {
 			fprintf(stderr, "Mirror of DVD faild\n");
-			return_code = -1;
+			return_code = EXIT_FAILURE;
 		} else {
-			return_code = 0;
+			return_code = EXIT_SUCCESS;
 		}
 	}
 #ifdef DEBUG
@@ -2573,9 +2573,9 @@ int main(int argc, char *argv[]){
 	if (do_title_set) {
 		if (DVDMirrorTitleSet(_dvd, targetdir, title_name, title_set) != 0) {
 			fprintf(stderr, "Mirror of title set %d faild\n", title_set);
-			return_code = -1;
+			return_code = EXIT_FAILURE;
 		} else {
-			return_code  = 0;
+			return_code = EXIT_SUCCESS;
 		}
 
 	}
@@ -2588,18 +2588,18 @@ int main(int argc, char *argv[]){
 	if(do_feature) {
 		if ( DVDMirrorMainFeature(_dvd, targetdir, title_name)  != 0 ) {
 			fprintf(stderr, "Mirror of main feature film of DVD faild\n");
-			return_code = -1;
+			return_code = EXIT_FAILURE;
 		} else {
-			return_code = 0;
+			return_code = EXIT_SUCCESS;
 		}
 	}
 
 	if(do_titles) {
 		if (DVDMirrorTitles(_dvd, targetdir, title_name, titles) != 0) {
 			fprintf(stderr, "Mirror of title  %d faild\n", titles);
-			return_code = -1;
+			return_code = EXIT_FAILURE;
 		} else {
-			return_code  = 0;
+			return_code = EXIT_SUCCESS;
 		}
 	}
 
@@ -2607,9 +2607,9 @@ int main(int argc, char *argv[]){
 	if(do_chapter) {
 		if (DVDMirrorChapters(_dvd, targetdir, title_name, start_chapter, end_chapter, titles) != 0) {
 			fprintf(stderr, "Mirror of chapters %d to %d in title %d faild\n", start_chapter, end_chapter, titles);
-			return_code = -1;
+			return_code = EXIT_FAILURE;
 		} else {
-			return_code  = 0;
+			return_code = EXIT_SUCCESS;
 		}
 	}
 
