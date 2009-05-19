@@ -205,26 +205,29 @@ void bsort_max_to_min(int sector[], int title[], int size);
 
 
 void usage(){
-	fprintf(stderr,"\nUsage: dvdbackup [options]\n");
-	fprintf(stderr,"\t-i device\twhere device is your dvd device\n");
-	fprintf(stderr,"\t-v X\t\twhere X is the amount of verbosity\n");
-	fprintf(stderr,"\t-I\t\tfor information about the DVD\n");
-	fprintf(stderr,"\t-o directory\twhere directory is your backup target\n");
-    fprintf(stderr,"\t-n dvd_title\tDVD title "
-            "(in case it is not automatically determined)\n");
-	fprintf(stderr,"\t-M\t\tbackup the whole DVD\n");
-	fprintf(stderr,"\t-F\t\tbackup the main feature of the DVD\n");
-	fprintf(stderr,"\t-T X\t\tbackup title set X\n");
-	fprintf(stderr,"\t-t X\t\tbackup title X\n");
-	fprintf(stderr,"\t-s X\t\tbackup from chapter X\n");
-	fprintf(stderr,"\t-e X\t\tbackup to chapter X\n");
-	fprintf(stderr,"\t-a 0\t\tto get aspect ratio 4:3 instead of 16:9 if both are present\n");
-	fprintf(stderr,"\t-h\t\tprint a brief usage message\n");
-	fprintf(stderr,"\t-?\t\tprint a brief usage message\n\n");
-	fprintf(stderr,"\t-i is mandatory\n");
-	fprintf(stderr,"\t-o is mandatory except if you use -I\n");
-	fprintf(stderr,"\t-a is option to the -F switch and has no effect on other options\n");
-	fprintf(stderr,"\t-s and -e should preferably be used together with -t\n\n");
+	fprintf(stderr,
+		"\nUsage: dvdbackup [options]\n"
+		"\t-i device\twhere device is your dvd device\n"
+		"\t-v X\t\twhere X is the amount of verbosity\n"
+		"\t-I\t\tfor information about the DVD\n"
+		"\t-o directory\twhere directory is your backup target\n"
+		"\t-n dvd_title\tDVD title "
+			"(in case it is not automatically determined)\n"
+		"\t-M\t\tbackup the whole DVD\n"
+		"\t-F\t\tbackup the main feature of the DVD\n"
+		"\t-T X\t\tbackup title set X\n"
+		"\t-t X\t\tbackup title X\n"
+		"\t-s X\t\tbackup from chapter X\n"
+		"\t-e X\t\tbackup to chapter X\n"
+		"\t-a 0\t\tto get aspect ratio 4:3 "
+			"instead of 16:9 if both are present\n"
+		"\t-h\t\tprint a brief usage message\n"
+		"\t-?\t\tprint a brief usage message\n\n"
+		"\t-i is mandatory\n"
+		"\t-o is mandatory except if you use -I\n"
+		"\t-a is option to the -F switch and "
+			"has no effect on other options\n"
+		"\t-s and -e should preferably be used together with -t\n\n");
 	exit(1);
 }
 
