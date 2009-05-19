@@ -227,7 +227,8 @@ void usage(){
 }
 
 int CheckSizeArray(const int size_array[], int reference, int target) {
-	if ( (size_array[reference]/size_array[target] == 1) &&
+	if ( (size_array[target] != 0) &&
+         (size_array[reference]/size_array[target] == 1) &&
 	     ((size_array[reference] * 2 - size_array[target])/ size_array[target] == 1) &&
 	     ((size_array[reference]%size_array[target] * 3) < size_array[reference]) ) {
 		/* We have a dual DVD with two feature films - now lets see if they have the same amount of chapters*/
