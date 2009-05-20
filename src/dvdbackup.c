@@ -52,19 +52,15 @@ void usage()
 int
 CheckSizeArray (const int size_array[], int reference, int target)
 {
-    if ((size_array[target] != 0)
-        && ((size_array[reference]/size_array[target]) == 1)
-        && ((size_array[reference] * 2 - size_array[target])
-            / (size_array[target]) == 1)
-        && ((size_array[reference] % size_array[target] * 3)
-            < size_array[reference]))
-    {
-        /* We have a dual DVD with two feature films - now lets see if
-           they have the same amount of chapters*/
-        return(1);
-    } else {
-        return(0);
-    }
+    /* If true:
+       We have a dual DVD with two feature films - now lets see if
+       they have the same amount of chapters */
+    return ((size_array[target] != 0)
+            && ((size_array[reference]/size_array[target]) == 1)
+            && ((size_array[reference] * 2 - size_array[target])
+                / (size_array[target]) == 1)
+            && ((size_array[reference] % size_array[target] * 3)
+                < size_array[reference]));
 }
 
 int
@@ -585,7 +581,7 @@ DVDGetInfo (dvd_reader_t *_dvd)
        biggest - second) /second == 1 and biggest%second * 3 <
        biggest */
 
-    if ( CheckSizeArray(size_size_array, 0, 1)  == 1 ) {
+    if (CheckSizeArray(size_size_array, 0, 1)) {
         /* We have a dual DVD with two feature films - now lets see if
            they have the same amount of chapters*/
 
@@ -677,7 +673,7 @@ DVDGetInfo (dvd_reader_t *_dvd)
 
     if (multi == 1) {
         for (i=0 ; i < title_sets ; ++i) {
-            if (CheckSizeArray(size_size_array, 0, i + 1)  == 0) {
+            if (!CheckSizeArray(size_size_array, 0, i + 1)) {
                 break;
             }
         }
