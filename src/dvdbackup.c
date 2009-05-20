@@ -21,7 +21,8 @@
 
 #include "dvdbackup.h"
 
-void usage(){
+void usage()
+{
     fprintf(stderr,
             "\nUsage: dvdbackup [options]\n"
             "\t-i device\twhere device is your dvd device\n"
@@ -48,7 +49,9 @@ void usage(){
     exit(EX_USAGE);
 }
 
-int CheckSizeArray(const int size_array[], int reference, int target) {
+int
+CheckSizeArray (const int size_array[], int reference, int target)
+{
     if ( (size_array[target] != 0) &&
          (size_array[reference]/size_array[target] == 1) &&
          ((size_array[reference] * 2 - size_array[target])/ size_array[target] == 1) &&
@@ -61,11 +64,13 @@ int CheckSizeArray(const int size_array[], int reference, int target) {
     }
 }
 
-int CheckAudioSubChannels(int audio_audio_array[], int title_set_audio_array[],
-                          int subpicture_sub_array[], int title_set_sub_array[],
-                          int channels_channel_array[],int title_set_channel_array[],
-                          int reference, int candidate, int title_sets) {
-
+int
+CheckAudioSubChannels (int audio_audio_array[], int title_set_audio_array[],
+                       int subpicture_sub_array[], int title_set_sub_array[],
+                       int channels_channel_array[],
+                       int title_set_channel_array[],
+                       int reference, int candidate, int title_sets)
+{
     int temp, i, found_audio, found_sub, found_channels;
 
     found_audio=0;
@@ -110,11 +115,14 @@ int CheckAudioSubChannels(int audio_audio_array[], int title_set_audio_array[],
     return(found_audio + found_sub + found_channels);
 }
 
-int DVDWriteCells(dvd_reader_t *dvd, int cell_start_sector[],
-                  int cell_end_sector[],
-                  int length, int titles, title_set_info_t *title_set_info,
-                  titles_info_t *titles_info, char *targetdir, char *title_name) {
-
+int
+DVDWriteCells (dvd_reader_t *dvd,
+               int cell_start_sector[], int cell_end_sector[],
+               int length, int titles,
+               title_set_info_t *title_set_info,
+               titles_info_t *titles_info,
+               char *targetdir, char *title_name)
+{
     /* Loop variables */
     int i, f;
 
@@ -367,13 +375,14 @@ int DVDWriteCells(dvd_reader_t *dvd, int cell_start_sector[],
     return(0);
 }
 
-void FreeSortArrays(int chapter_chapter_array[], int title_set_chapter_array[],
-                    int angle_angle_array[], int title_set_angle_array[],
-                    int subpicture_sub_array[], int title_set_sub_array[],
-                    int audio_audio_array[], int title_set_audio_array[],
-                    int size_size_array[], int title_set_size_array[],
-                    int channels_channel_array[], int title_set_channel_array[]) {
-
+void
+FreeSortArrays (int chapter_chapter_array[], int title_set_chapter_array[],
+                int angle_angle_array[], int title_set_angle_array[],
+                int subpicture_sub_array[], int title_set_sub_array[],
+                int audio_audio_array[], int title_set_audio_array[],
+                int size_size_array[], int title_set_size_array[],
+                int channels_channel_array[], int title_set_channel_array[])
+{
     free(chapter_chapter_array);
     free(title_set_chapter_array);
 
@@ -393,8 +402,9 @@ void FreeSortArrays(int chapter_chapter_array[], int title_set_chapter_array[],
     free(title_set_channel_array);
 }
 
-titles_info_t *DVDGetInfo(dvd_reader_t *_dvd) {
-
+titles_info_t*
+DVDGetInfo (dvd_reader_t *_dvd)
+{
     /* title interation */
     int counter, i, f;
 
@@ -820,9 +830,12 @@ titles_info_t *DVDGetInfo(dvd_reader_t *_dvd) {
     */
 }
 
-int DVDCopyTileVobX(dvd_reader_t *dvd, title_set_info_t *title_set_info,
-                    int title_set, int vob, char *targetdir, char *title_name) {
-
+int
+DVDCopyTileVobX (dvd_reader_t *dvd,
+                 title_set_info_t *title_set_info,
+                 int title_set, int vob,
+                 char *targetdir, char *title_name)
+{
     /* Loop variable */
     int i;
 
@@ -971,8 +984,12 @@ int DVDCopyTileVobX(dvd_reader_t *dvd, title_set_info_t *title_set_info,
     return(0);
 }
 
-int DVDCopyMenu(dvd_reader_t *dvd, title_set_info_t *title_set_info,
-                int title_set, char *targetdir, char *title_name) {
+int
+DVDCopyMenu (dvd_reader_t *dvd,
+             title_set_info_t *title_set_info,
+             int title_set,
+             char *targetdir, char *title_name)
+{
 
     /* Temp filename,dirname */
     char        targetname[PATH_MAX];
@@ -1087,9 +1104,12 @@ int DVDCopyMenu(dvd_reader_t *dvd, title_set_info_t *title_set_info,
     return(0);
 }
 
-int DVDCopyIfoBup (dvd_reader_t *dvd, title_set_info_t *title_set_info,
-                   int title_set, char *targetdir, char *title_name) {
-
+int
+DVDCopyIfoBup (dvd_reader_t *dvd,
+               title_set_info_t *title_set_info,
+               int title_set,
+               char *targetdir, char *title_name)
+{
     /* Temp filename,dirname */
     char        targetname[PATH_MAX];
     struct stat fileinfo;
@@ -1267,9 +1287,11 @@ int DVDCopyIfoBup (dvd_reader_t *dvd, title_set_info_t *title_set_info,
     return(0);
 }
 
-int DVDMirrorVMG(dvd_reader_t *dvd, title_set_info_t *title_set_info,
-                 char *targetdir, char *title_name){
-
+int
+DVDMirrorVMG (dvd_reader_t *dvd,
+              title_set_info_t *title_set_info,
+              char *targetdir, char *title_name)
+{
     if ( DVDCopyIfoBup(dvd, title_set_info, 0, targetdir, title_name) != 0 ) {
         return(1);
     }
@@ -1280,9 +1302,11 @@ int DVDMirrorVMG(dvd_reader_t *dvd, title_set_info_t *title_set_info,
     return(0);
 }
 
-int DVDMirrorTitleX(dvd_reader_t *dvd, title_set_info_t *title_set_info,
-                    int title_set, char *targetdir,char *title_name) {
-
+int
+DVDMirrorTitleX (dvd_reader_t *dvd,
+                 title_set_info_t *title_set_info,
+                 int title_set, char *targetdir,char *title_name)
+{
     /* Loop through the vobs */
     int i;
 
@@ -1307,7 +1331,8 @@ int DVDMirrorTitleX(dvd_reader_t *dvd, title_set_info_t *title_set_info,
     return(0);
 }
 
-int DVDGetTitleName(const char *device, char *title)
+int
+DVDGetTitleName (const char *device, char *title)
 {
     /* Variables for filehandel and title string interaction */
 
@@ -1354,8 +1379,9 @@ int DVDGetTitleName(const char *device, char *title)
     return(0);
 }
 
-void bsort_min_to_max(int sector[], int title[], int size) {
-
+void
+bsort_min_to_max (int sector[], int title[], int size)
+{
     int temp_title, temp_sector, i, j;
 
     for ( i=0; i < size ; i++ ) {
@@ -1372,8 +1398,9 @@ void bsort_min_to_max(int sector[], int title[], int size) {
     }
 }
 
-void bsort_max_to_min(int sector[], int title[], int size) {
-
+void
+bsort_max_to_min (int sector[], int title[], int size)
+{
     int temp_title, temp_sector, i, j;
 
     for ( i=0; i < size ; i++ ) {
@@ -1390,8 +1417,10 @@ void bsort_max_to_min(int sector[], int title[], int size) {
     }
 }
 
-void uniq(int sector[], int title[], int title_sets_array[],
-          int sector_sets_array[], int titles) {
+void
+uniq (int sector[], int title[], int title_sets_array[],
+      int sector_sets_array[], int titles)
+{
     int  i, j;
 
     for ( i=0, j=0; j < titles;) {
@@ -1412,8 +1441,9 @@ void uniq(int sector[], int title[], int title_sets_array[],
 
 }
 
-void align_end_sector(int cell_start_sector[], int cell_end_sector[], int size) {
-
+void
+align_end_sector (int cell_start_sector[], int cell_end_sector[], int size)
+{
     int i;
 
     for (i = 0; i < size  - 1 ; i++) {
@@ -1423,18 +1453,23 @@ void align_end_sector(int cell_start_sector[], int cell_end_sector[], int size) 
     }
 }
 
-void DVDFreeTitleSetInfo(title_set_info_t *title_set_info) {
+void
+DVDFreeTitleSetInfo (title_set_info_t *title_set_info)
+{
     free(title_set_info->title_set);
     free(title_set_info);
 }
 
-void DVDFreeTitlesInfo(titles_info_t *titles_info) {
+void
+DVDFreeTitlesInfo (titles_info_t *titles_info)
+{
     free(titles_info->titles);
     free(titles_info);
 }
 
-title_set_info_t *DVDGetFileSet(dvd_reader_t *_dvd) {
-
+title_set_info_t*
+DVDGetFileSet (dvd_reader_t *_dvd)
+{
     /* title interation */
     int title_sets, counter, i;
 
@@ -1610,8 +1645,9 @@ title_set_info_t *DVDGetFileSet(dvd_reader_t *_dvd) {
     return(title_set_info);
 }
 
-int DVDMirror(dvd_reader_t *_dvd, char *targetdir, char *title_name) {
-
+int
+DVDMirror (dvd_reader_t *_dvd, char *targetdir, char *title_name)
+{
     int i;
     title_set_info_t *title_set_info=NULL;
 
@@ -1637,9 +1673,12 @@ int DVDMirror(dvd_reader_t *_dvd, char *targetdir, char *title_name) {
     return(0);
 }
 
-int DVDMirrorTitleSet(dvd_reader_t *_dvd, char *targetdir,
-                      char *title_name, int title_set) {
-
+int
+DVDMirrorTitleSet (dvd_reader_t *_dvd,
+                   char *targetdir,
+                   char *title_name,
+                   int title_set)
+{
     title_set_info_t *title_set_info=NULL;
 
 #ifdef DEBUG
@@ -1679,8 +1718,11 @@ int DVDMirrorTitleSet(dvd_reader_t *_dvd, char *targetdir,
     return(0);
 }
 
-int DVDMirrorMainFeature(dvd_reader_t *_dvd, char *targetdir, char *title_name) {
-
+int
+DVDMirrorMainFeature (dvd_reader_t *_dvd,
+                      char *targetdir,
+                      char *title_name)
+{
     title_set_info_t *title_set_info=NULL;
     titles_info_t *titles_info=NULL;
 
@@ -1709,9 +1751,14 @@ int DVDMirrorMainFeature(dvd_reader_t *_dvd, char *targetdir, char *title_name) 
     return(0);
 }
 
-int DVDMirrorChapters(dvd_reader_t *_dvd, char *targetdir,
-                      char *title_name, int start_chapter,
-                      int  end_chapter, int titles) {
+int
+DVDMirrorChapters (dvd_reader_t *_dvd,
+                   char *targetdir,
+                   char *title_name, 
+                   int start_chapter,
+                   int end_chapter,
+                   int titles)
+{
     int result;
     int chapters = 0;
     int feature;
@@ -1884,8 +1931,12 @@ int DVDMirrorChapters(dvd_reader_t *_dvd, char *targetdir,
     }
 }
 
-int DVDMirrorTitles(dvd_reader_t *_dvd, char *targetdir, char *title_name, int titles) {
-
+int
+DVDMirrorTitles (dvd_reader_t *_dvd,
+                 char *targetdir,
+                 char *title_name,
+                 int titles)
+{
     int end_chapter;
 
     titles_info_t *titles_info=NULL;
@@ -1915,8 +1966,9 @@ int DVDMirrorTitles(dvd_reader_t *_dvd, char *targetdir, char *title_name, int t
     return(0);
 }
 
-int DVDDisplayInfo(dvd_reader_t *_dvd, char *dvd) {
-
+int
+DVDDisplayInfo (dvd_reader_t *_dvd, char *dvd)
+{
     int               i, f;
     int               chapters;
     int               channels;
@@ -2047,8 +2099,9 @@ int DVDDisplayInfo(dvd_reader_t *_dvd, char *dvd) {
     return(0);
 }
 
-int main(int argc, char *argv[]){
-
+int
+main (int argc, char *argv[])
+{
     /* Args */
     int flags;
 
