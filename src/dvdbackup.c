@@ -265,7 +265,7 @@ DVDWriteCells (dvd_reader_t *dvd,
 #endif
 
         if ((dvd_file = DVDOpenFile(dvd, title_set, DVD_READ_TITLE_VOBS))== 0) {
-            fprintf(stderr, "Faild opending TITLE VOB\n");
+            fprintf(stderr, "Failed opending TITLE VOB\n");
             free(buffer);
             close(streamout);
             return(1);
@@ -333,7 +333,7 @@ DVDWriteCells (dvd_reader_t *dvd,
             }
 
             if ((dvd_file = DVDOpenFile(dvd, title_set, DVD_READ_TITLE_VOBS))== 0) {
-                fprintf(stderr, "Faild opending TITLE VOB\n");
+                fprintf(stderr, "Failed opending TITLE VOB\n");
                 free(buffer);
                 close(streamout);
                 return(1);
@@ -863,20 +863,20 @@ DVDCopyTileVobX (dvd_reader_t *dvd,
     dvd_file_t *dvd_file = NULL;
 
     if (title_set_info->number_of_title_sets + 1 < title_set) {
-        fprintf(stderr,"Faild num title test\n");
+        fprintf(stderr,"Failed num title test\n");
         return(1);
     }
 
     if (title_set_info->title_set[title_set].number_of_vob_files < vob ) {
-        fprintf(stderr,"Faild vob test\n");
+        fprintf(stderr,"Failed vob test\n");
         return(1);
     }
 
     if (title_set_info->title_set[title_set].size_vob[0] == 0 ) {
-        fprintf(stderr,"Faild vob 1 size test\n");
+        fprintf(stderr,"Failed vob 1 size test\n");
         return(0);
     } else if (title_set_info->title_set[title_set].size_vob[vob - 1] == 0 ) {
-        fprintf(stderr,"Faild vob %d test\n", vob);
+        fprintf(stderr,"Failed vob %d test\n", vob);
         return(0);
     } else {
         size = title_set_info->title_set[title_set].size_vob[vob - 1]/2048;
@@ -947,7 +947,7 @@ DVDCopyTileVobX (dvd_reader_t *dvd,
     }
 
     if ((dvd_file = DVDOpenFile(dvd, title_set, DVD_READ_TITLE_VOBS))== 0) {
-        fprintf(stderr, "Faild opending TITLE VOB\n");
+        fprintf(stderr, "Failed opending TITLE VOB\n");
         free(buffer);
         close(streamout);
         return(1);
@@ -1067,7 +1067,7 @@ DVDCopyMenu (dvd_reader_t *dvd,
     }
 
     if ((dvd_file = DVDOpenFile(dvd, title_set, DVD_READ_MENU_VOBS))== 0) {
-        fprintf(stderr, "Faild opending MENU VOB\n");
+        fprintf(stderr, "Failed opending MENU VOB\n");
         free(buffer);
         close(streamout);
         return(1);
@@ -1181,7 +1181,7 @@ DVDCopyIfoBup (dvd_reader_t *dvd,
     }
 
     if ((dvd_file = DVDOpenFile(dvd, title_set, DVD_READ_INFO_FILE))== 0) {
-        fprintf(stderr, "Faild opending IFO for tile set %d\n", title_set);
+        fprintf(stderr, "Failed opending IFO for tile set %d\n", title_set);
         free(buffer);
         close(streamout);
         return(1);
@@ -1258,7 +1258,7 @@ DVDCopyIfoBup (dvd_reader_t *dvd,
     }
 
     if ((dvd_file = DVDOpenFile(dvd, title_set, DVD_READ_INFO_BACKUP_FILE))== 0) {
-        fprintf(stderr, "Faild opending BUP for title set %d\n", title_set);
+        fprintf(stderr, "Failed opending BUP for title set %d\n", title_set);
         free(buffer);
         close(streamout);
         return(1);
@@ -1658,14 +1658,14 @@ DVDMirror (dvd_reader_t *_dvd, char *targetdir, char *title_name)
     }
 
     if ( DVDMirrorVMG(_dvd, title_set_info, targetdir, title_name) != 0 ) {
-        fprintf(stderr,"Mirror of VMG faild\n");
+        fprintf(stderr,"Mirror of VMG failed\n");
         DVDFreeTitleSetInfo(title_set_info);
         return(1);
     }
 
     for ( i=0; i < title_set_info->number_of_title_sets; i++) {
         if ( DVDMirrorTitleX(_dvd, title_set_info, i + 1, targetdir, title_name) != 0 ) {
-            fprintf(stderr,"Mirror of Title set %d faild\n", i + 1);
+            fprintf(stderr,"Mirror of Title set %d failed\n", i + 1);
             DVDFreeTitleSetInfo(title_set_info);
             return(1);
         }
@@ -1702,14 +1702,14 @@ DVDMirrorTitleSet (dvd_reader_t *_dvd,
 
     if ( title_set == 0 ) {
         if ( DVDMirrorVMG(_dvd, title_set_info, targetdir, title_name) != 0 ) {
-            fprintf(stderr,"Mirror of Title set 0 (VMG) faild\n");
+            fprintf(stderr,"Mirror of Title set 0 (VMG) failed\n");
             DVDFreeTitleSetInfo(title_set_info);
             return(1);
         }
     } else {
         if ( DVDMirrorTitleX(_dvd, title_set_info, title_set,
                              targetdir, title_name) != 0 ) {
-            fprintf(stderr,"Mirror of Title set %d faild\n", title_set);
+            fprintf(stderr,"Mirror of Title set %d failed\n", title_set);
             DVDFreeTitleSetInfo(title_set_info);
             return(1);
         }
@@ -1728,7 +1728,7 @@ DVDMirrorMainFeature (dvd_reader_t *_dvd,
 
     titles_info = DVDGetInfo(_dvd);
     if (!titles_info) {
-        fprintf(stderr, "Guess work of main feature film faild\n");
+        fprintf(stderr, "Guess work of main feature film failed\n");
         return(1);
     }
 
@@ -1740,7 +1740,7 @@ DVDMirrorMainFeature (dvd_reader_t *_dvd,
 
     if ( DVDMirrorTitleX(_dvd, title_set_info, titles_info->main_title_set,
                          targetdir, title_name) != 0 ) {
-        fprintf(stderr,"Mirror of main featur file which is title set %d faild\n",
+        fprintf(stderr,"Mirror of main featur file which is title set %d failed\n",
                 titles_info->main_title_set);
         DVDFreeTitleSetInfo(title_set_info);
         return(1);
@@ -1778,7 +1778,7 @@ DVDMirrorChapters (dvd_reader_t *_dvd,
 
     titles_info = DVDGetInfo(_dvd);
     if (!titles_info) {
-        fprintf(stderr, "Faild to obtain titles information\n");
+        fprintf(stderr, "Failed to obtain titles information\n");
         return(1);
     }
 
@@ -1947,7 +1947,7 @@ DVDMirrorTitles (dvd_reader_t *_dvd,
 
     titles_info = DVDGetInfo(_dvd);
     if (!titles_info) {
-        fprintf(stderr, "Faild to obtain titles information\n");
+        fprintf(stderr, "Failed to obtain titles information\n");
         return(1);
     }
 
@@ -1978,7 +1978,7 @@ DVDDisplayInfo (dvd_reader_t *_dvd, char *dvd)
 
     titles_info = DVDGetInfo(_dvd);
     if (!titles_info) {
-        fprintf(stderr, "Guess work of main feature film faild\n");
+        fprintf(stderr, "Guess work of main feature film failed\n");
         return(1);
     }
 
@@ -2335,7 +2335,7 @@ main (int argc, char *argv[])
         }
     } else {
         if (mkdir(targetname, S_IRUSR | S_IWUSR | S_IXUSR) != 0) {
-            fprintf(stderr,"Faild creating target directory\n");
+            fprintf(stderr,"Failed creating target directory\n");
             perror("");
             DVDClose(_dvd);
             exit(-1);
@@ -2351,7 +2351,7 @@ main (int argc, char *argv[])
         }
     } else {
         if (mkdir(targetname, S_IRUSR | S_IWUSR | S_IXUSR) != 0) {
-            fprintf(stderr,"Faild creating title directory\n");
+            fprintf(stderr,"Failed creating title directory\n");
             perror("");
             DVDClose(_dvd);
             exit(-1);
@@ -2367,7 +2367,7 @@ main (int argc, char *argv[])
         }
     } else {
         if (mkdir(targetname, S_IRUSR | S_IWUSR | S_IXUSR) != 0) {
-            fprintf(stderr,"Faild creating VIDEO_TS directory\n");
+            fprintf(stderr,"Failed creating VIDEO_TS directory\n");
             perror("");
             DVDClose(_dvd);
             exit(-1);
@@ -2380,7 +2380,7 @@ main (int argc, char *argv[])
 
     if(do_mirror) {
         if ( DVDMirror(_dvd, targetdir, title_name)  != 0 ) {
-            fprintf(stderr, "Mirror of DVD faild\n");
+            fprintf(stderr, "Mirror of DVD failed\n");
             return_code = EXIT_FAILURE;
         } else {
             return_code = EXIT_SUCCESS;
@@ -2392,7 +2392,7 @@ main (int argc, char *argv[])
 
     if (do_title_set) {
         if (DVDMirrorTitleSet(_dvd, targetdir, title_name, title_set) != 0) {
-            fprintf(stderr, "Mirror of title set %d faild\n", title_set);
+            fprintf(stderr, "Mirror of title set %d failed\n", title_set);
             return_code = EXIT_FAILURE;
         } else {
             return_code = EXIT_SUCCESS;
@@ -2405,7 +2405,7 @@ main (int argc, char *argv[])
 
     if(do_feature) {
         if ( DVDMirrorMainFeature(_dvd, targetdir, title_name)  != 0 ) {
-            fprintf(stderr, "Mirror of main feature film of DVD faild\n");
+            fprintf(stderr, "Mirror of main feature film of DVD failed\n");
             return_code = EXIT_FAILURE;
         } else {
             return_code = EXIT_SUCCESS;
@@ -2414,7 +2414,7 @@ main (int argc, char *argv[])
 
     if(do_titles) {
         if (DVDMirrorTitles(_dvd, targetdir, title_name, titles) != 0) {
-            fprintf(stderr, "Mirror of title  %d faild\n", titles);
+            fprintf(stderr, "Mirror of title  %d failed\n", titles);
             return_code = EXIT_FAILURE;
         } else {
             return_code = EXIT_SUCCESS;
@@ -2424,7 +2424,7 @@ main (int argc, char *argv[])
     if(do_chapter) {
         if (DVDMirrorChapters(_dvd, targetdir, title_name,
                               start_chapter, end_chapter, titles) != 0) {
-            fprintf(stderr, "Mirror of chapters %d to %d in title %d faild\n",
+            fprintf(stderr, "Mirror of chapters %d to %d in title %d failed\n",
                     start_chapter, end_chapter, titles);
             return_code = EXIT_FAILURE;
         } else {
