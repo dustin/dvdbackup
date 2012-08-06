@@ -1,4 +1,4 @@
-CFLAGS=-Wextra -Wall -Werror -I/opt/local/include
+CFLAGS=-Wextra -Wall -I/opt/local/include
 LDFLAGS=-L/opt/local/lib -ldvdread
 
 dvdbackup: dvdbackup.o
